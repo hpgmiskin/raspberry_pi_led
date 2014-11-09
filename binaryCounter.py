@@ -1,5 +1,6 @@
-import gpioIn.gpioIn()
-import gpioOut.gpioOut()
+import time
+from gpioIn import gpioIn
+from gpioOut import gpioOut
 
 def decimalBinary(decimal):
 	""" 4 bit decimal to binary converter """

@@ -1,0 +1,8 @@
+#Python Files
+
+__pycache__/
+*.pyc
+
+#OSX Files
+
+.DS_STORE

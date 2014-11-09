@@ -36,8 +36,8 @@ class gpioOut():
 
 	def turnOn(self,pin):
 		"Turn given pin on"
-	 	GPIO.output(pin,GPIO.HIGH)
+		GPIO.output(pin,GPIO.HIGH)
 
 	def turnOff(self,pin):
 		"Turn given pin off"
-	 	GPIO.output(pin,GPIO.LOW)
+		GPIO.output(pin,GPIO.LOW)
