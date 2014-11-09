@@ -22,16 +22,37 @@ def decimalBinary(decimal):
 def binaryCounter():
 	""" function to count between 0 and 15 in binary """
 
+	inPin = gpioIn(20)
 	outPins = gpioOut([25,24,23,18])
 
 	for decimal in range(16):
 		binary = decimalBinary(decimal)
 		outPins.switchPins(binary)
 		print("{} - {}".format(decimal,binary))
+		inPin.listen()
 		time.sleep(0.5)
 
 	outPins.switchPins([0,0,0,0])
 
+class gpioIn():
+	"""docstring for gpioIn"""
+
+	def __init__(self,pin):
+		self.pin = pin;
+		self.setupPin();
+
+	def setupPin(self):
+		"Setup GPIO input pin"
+		GPIO.setup(self.pin,GPIO.IN)
+
+	def listen(self):
+		"Listen for key press"
+
+		while True:
+			input = GPIO.input(self.pin)
+			if input:
+				return
+			time.sleep(0.01)
 
 class gpioOut():
 	"""docstring for gpioOut"""
