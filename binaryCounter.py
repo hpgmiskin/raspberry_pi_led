@@ -30,6 +30,8 @@ def binaryCounter():
 		print("{} - {}".format(decimal,binary))
 		time.sleep(0.5)
 
+	outPins.switchPins([0,0,0,0])
+
 
 class gpioOut():
 	"""docstring for gpioOut"""
