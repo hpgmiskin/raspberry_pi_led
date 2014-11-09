@@ -24,8 +24,8 @@ def binaryCounter():
 
 	outPins = gpioOut([25,24,23,18])
 
-	for i in range(16):
-		binary = decimalBinary(i)
+	for decimal in range(16):
+		binary = decimalBinary(decimal)
 		outPins.switchPins(binary)
 		print("{} - {}".format(decimal,binary))
 		time.sleep(0.5)
@@ -38,31 +38,30 @@ class gpioOut():
 		self.pins = pins
 		self.setupPins()
 
-	def setupPins():
+	def setupPins(self):
 		for pin in self.pins:
-			GPIO.setup(pin,GPIO.OUT)
+		 	GPIO.setup(pin,GPIO.OUT)
 
-	def switchPins(logicList):
-		assert(length(logicList) == length(self.pins))
+	def switchPins(self,logicList):
+		assert(len(logicList) == len(self.pins))
 
 		for i,logic in enumerate(logicList):
 			self.switchPin(self.pins[i],logic)
 
-	def switchPin(pin,logic):
+	def switchPin(self,pin,logic):
 		if logic:
 			self.turnOn(pin)
 		else:
 			self.turnOff(pin)
 
-	def turnOn(pin):
-		GPIO.output(pin,GPIO.HIGH)
+	def turnOn(self,pin):
+	 	GPIO.output(pin,GPIO.HIGH)
 
-	def turnOff(pin):
-		GPIO.output(pin,GPIO.HIGH)
+	def turnOff(self,pin):
+	 	GPIO.output(pin,GPIO.LOW)
+
 		
 
 if __name__ == "__main__":
-	print(decimalBinary(15))
-	print(decimalBinary(8))
-	print(decimalBinary(7))
+	binaryCounter()
 
