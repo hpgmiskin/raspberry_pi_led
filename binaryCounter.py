@@ -1,7 +1,5 @@
-import RPi.GPIO as GPIO
-import time
-
-GPIO.setmode(GPIO.BCM)
+import gpioIn.gpioIn()
+import gpioOut.gpioOut()
 
 def decimalBinary(decimal):
 	""" 4 bit decimal to binary converter """
@@ -32,58 +30,7 @@ def binaryCounter():
 		inPin.listen()
 		time.sleep(0.5)
 
-	outPins.switchPins([0,0,0,0])
-
-class gpioIn():
-	"""docstring for gpioIn"""
-
-	def __init__(self,pin):
-		self.pin = pin;
-		self.setupPin();
-
-	def setupPin(self):
-		"Setup GPIO input pin"
-		GPIO.setup(self.pin,GPIO.IN)
-
-	def listen(self):
-		"Listen for key press"
-
-		while True:
-			input = GPIO.input(self.pin)
-			if input:
-				return
-			time.sleep(0.01)
-
-class gpioOut():
-	"""docstring for gpioOut"""
-
-	def __init__(self, pins):
-		self.pins = pins
-		self.setupPins()
-
-	def setupPins(self):
-		for pin in self.pins:
-		 	GPIO.setup(pin,GPIO.OUT)
-
-	def switchPins(self,logicList):
-		assert(len(logicList) == len(self.pins))
-
-		for i,logic in enumerate(logicList):
-			self.switchPin(self.pins[i],logic)
-
-	def switchPin(self,pin,logic):
-		if logic:
-			self.turnOn(pin)
-		else:
-			self.turnOff(pin)
-
-	def turnOn(self,pin):
-	 	GPIO.output(pin,GPIO.HIGH)
-
-	def turnOff(self,pin):
-	 	GPIO.output(pin,GPIO.LOW)
-
-		
+	outPins.switchPins([0,0,0,0])		
 
 if __name__ == "__main__":
 	binaryCounter()
