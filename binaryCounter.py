@@ -28,7 +28,7 @@ def binaryCounter():
 		binary = decimalBinary(decimal)
 		outPins.switchPins(binary)
 		print("{} - {}".format(decimal,binary))
-		inPin.listen()
+		#inPin.listen()
 		time.sleep(0.5)
 
 	outPins.switchPins([0,0,0,0])		
